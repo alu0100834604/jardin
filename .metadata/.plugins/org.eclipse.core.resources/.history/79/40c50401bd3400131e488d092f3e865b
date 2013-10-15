@@ -1,0 +1,106 @@
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.TextField;
+import java.awt.Graphics;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class inter_graphic extends JFrame implements ActionListener 
+{
+  private Color color = Color.LIGHT_GRAY;
+  private Container container;
+  private int alto;
+  private int ancho;
+  private int tamano_celda;
+  private int offset_x;
+  private int offset_y;
+  private int[][] escenario;
+  private Color[] colores;
+  protected static JButton b;
+  TextField text = new TextField(20);
+  private int numClicks = 0;
+  
+  public inter_graphic(int _alto, int _ancho, int _tamano_celda)
+  {
+    super(" Jardín prueba 1");
+    setSize(1300, 700);
+    setVisible(true);
+    this.ancho = _alto;
+    this.alto = _ancho;
+    this.tamano_celda = _tamano_celda;
+    this.offset_y = 100;
+    this.offset_x = 250;
+    this.escenario = new int[_ancho][_alto];
+
+    this.escenario[1][1] = 1;
+    this.escenario[1][2] = 3;
+    this.escenario[1][3] = 3;
+    this.escenario[2][2] = 3;
+    this.escenario[0][0] = 2;
+    this.escenario[2][2] = 3;
+    this.escenario[3][2] = 3;
+  }
+
+  public void leyenda(Graphics g)
+  {
+    int offset_leyenda = 20;
+
+    String[] texto_leyenda = { "Césped bajo", "Césped alto", "Obstáculo", "Cortacesped" };
+    for (int i = 0; i < texto_leyenda.length; i++) {
+      g.setColor(this.colores[i]);
+      g.fillRect(this.offset_x, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i, this.tamano_celda, this.tamano_celda);
+      g.setColor(Color.BLACK);
+      g.setFont(new Font("Serif", 3, 18));
+      g.drawString(texto_leyenda[i], this.offset_x + this.tamano_celda, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i + this.tamano_celda / 2);
+    }
+    JButton b = new JButton("Click me");
+    add(b);
+    add(text);
+    //b.addActionListener(this);
+  }
+
+  public void paint(Graphics g)
+  {
+   super.paint(g);
+
+    this.colores = new Color[] { 
+      new Color(88, 250, 88), 
+      new Color(0, 255, 0), 
+      new Color(255, 255, 0), 
+      new Color(0, 0, 0) };
+
+    for (int i = 0; i < this.alto; i++)
+    {
+      for (int j = 0; j < this.ancho; j++) {
+        int indice_color_celda = this.escenario[i][j];
+        g.setColor(this.colores[indice_color_celda]);
+        g.drawRect(i * this.tamano_celda + this.offset_x, j * this.tamano_celda + this.offset_y, this.tamano_celda, this.tamano_celda);
+        g.fillRect(i * this.tamano_celda + this.offset_x + 1, j * this.tamano_celda + this.offset_y + 1, this.tamano_celda - 1, this.tamano_celda - 1);
+      }
+    }
+    
+    leyenda(g);
+
+
+  }
+  
+  public void actionPerformed(ActionEvent e)  {
+	  System.out.println(numClicks);
+	  numClicks++;
+	  text.setText("Button Clicked " + numClicks + " times");
+  }
+
+  public static void main(String[] args)
+  {
+    String dim_str = JOptionPane.showInputDialog("Introduzca el alto");
+    int alto = Integer.parseInt(dim_str);
+    String dim_str2 = JOptionPane.showInputDialog("Introduzca el ancho");
+    int ancho = Integer.parseInt(dim_str2);
+    inter_graphic application = new inter_graphic(alto, ancho, 50);
+    application.setDefaultCloseOperation(3);
+  }
+}

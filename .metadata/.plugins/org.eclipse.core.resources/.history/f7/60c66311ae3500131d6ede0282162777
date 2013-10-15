@@ -1,0 +1,157 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JColorChooser.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import java.awt.*;
+import javax.swing.*;
+public class DemoBorderLayout {
+    //variables y comtenedores
+    private JLabel etiquetaSu;
+    private JPanel panelIzquierdo, panelDerecho, panelInferior;
+    private JButton botonIz1, botonIz2, botonIz3;
+    private JButton texto_leido, changeColorButton;
+    private JButton    botonIn1, botonIn2;
+    private JScrollPane scroll;
+    private Color color = Color.LIGHT_GRAY;
+    private JButton textoleido;
+    private JTextField he_leido;
+    private String leertexto = "src/camino_salida.txt";
+    public void contruyePanelIzquierdo(){
+        panelIzquierdo = new JPanel();
+        botonIz1=new JButton("Izq1");
+        botonIz2=new JButton("Izq2");
+        botonIz3=new JButton("Izq3");
+        panelIzquierdo.setLayout(new BoxLayout(panelIzquierdo,BoxLayout.Y_AXIS));
+        panelIzquierdo.setBackground(Color.red);
+        panelIzquierdo.add(botonIz1);
+        panelIzquierdo.add(botonIz2);
+        panelIzquierdo.add(botonIz3);
+    }
+
+    public void contruyePanelDerecho(){
+        panelDerecho 		= new JPanel();
+        changeColorButton	= new JButton("Change Color");
+        texto_leido			= new JButton("Lee texto!");
+        he_leido 			= new JTextField();
+        panelDerecho.setLayout(new BoxLayout(panelDerecho,BoxLayout.Y_AXIS));
+        panelDerecho.setBackground(Color.blue);
+        panelDerecho.add(changeColorButton);
+        panelDerecho.add(texto_leido);
+        panelDerecho.add(he_leido);
+    }
+
+    public void contruyePanelInferior(){
+        panelInferior = new JPanel();
+        botonIn1=new JButton("Aceptar");
+        botonIn2=new JButton("Cancelar");
+        panelInferior.setLayout(new FlowLayout());
+        panelInferior.setBackground(Color.green);
+        panelInferior.add(botonIn1);
+        panelInferior.add(botonIn2);
+    }
+    
+    public String leeFichero (String fichero){
+  	  File nombre = null;
+  	  String dir = "src/camino_salida.txt";
+  	  FileReader filepointer = null;
+  	  BufferedReader bufferedpointer = null;
+  	  
+  	  try{
+  		  //initialize la lectura
+  		  nombre = new File (dir);
+  		  
+  		  //fileReader no tiene métodos que permitan leer líneas completas
+  		  //pero sí BufferedReader
+  		  filepointer = new FileReader (nombre);
+  		  bufferedpointer = new BufferedReader(filepointer);
+  		  
+  		  //leer el fichero
+  		  String linea;
+  		  while((linea=bufferedpointer.readLine())!=null){
+  			System.out.println(linea);
+  		  return linea;
+  		  }
+  		  return "no puedo leer";
+  	  }
+  	  catch(Exception e){
+  		  e.printStackTrace();
+  		  return "excepción de catch";
+  	  }finally{
+  		  // cerrar el fichero si todo va bien
+  		  try{
+  			  if(null != filepointer) {
+  				  filepointer.close();
+  			  }//--end close filepointer
+  		  }catch (Exception e2){
+  			  e2.printStackTrace();
+  		  }//--end catch finally
+  	  }
+    }
+    
+    public void actionPerformed(ActionEvent e){
+    	
+  	  //cambiar el color del fondo
+  	  if(e.getSource()==changeColorButton){
+  		//color = JColorChooser.showDialog(
+  		//		DemoBorderLayout.this, "Choose a color", color );
+
+  		if (color == null) 
+  				color = Color.LIGHT_GRAY;
+  		
+  		//getContentPane().setBackground(color);
+  	  }//end--changeColorButton
+  	  
+  	  //Lectura del fichero
+  	  if(e.getSource()==leertexto){
+  		  texto_leido.setText(leeFichero("src/camino_salida.txt"));
+  	  }//end--leertexto
+  	  
+    }//--end actionperformed 
+
+    public void contruyeVentana(){
+        JFrame frame = new JFrame();
+        scroll = new JScrollPane(new JTextArea("JTextArea",10,15));
+        etiquetaSu = new JLabel("Demostracion por INFORUX ");
+        Font aux=etiquetaSu.getFont();
+        etiquetaSu.setFont(new Font(aux.getFontName(), aux.getStyle(), 20));
+        frame.setLayout(new BorderLayout());
+
+        //agregamos los paneles al frame principal
+        frame.add(etiquetaSu,BorderLayout.NORTH);
+        frame.add(scroll, BorderLayout.CENTER);
+        frame.add(panelIzquierdo,BorderLayout.WEST);
+        frame.add(panelDerecho,BorderLayout.EAST);
+        frame.add(panelInferior,BorderLayout.SOUTH);
+        //Configuramos el frame
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public DemoBorderLayout(){
+        contruyePanelInferior();
+        contruyePanelIzquierdo();
+        contruyePanelDerecho();
+        contruyeVentana();
+    }
+
+    public static void main (String [] inforux){
+        new DemoBorderLayout();
+    }
+}

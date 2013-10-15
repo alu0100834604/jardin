@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>
+Applet Rect (rect.class)
+</title>
+</head>
+<body>
+<APPLET code="rect.class" width=200 height=300>
+</APPLET>
+</body>
+</html>

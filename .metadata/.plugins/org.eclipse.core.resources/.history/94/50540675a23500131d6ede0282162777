@@ -1,0 +1,350 @@
+//opciones para acomodar las fonteras
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Label;
+import java.awt.Panel;
+
+//acomodar el color (del fondo o de la escritura
+import java.awt.Color;
+
+//métodos para crear un container
+import java.awt.Container;
+
+//cambiar/acomodar la escritura
+import java.awt.Font;
+
+//acomodar los limites de la frontera
+import javax.swing.BorderFactory;
+
+//para crear un panel
+import javax.swing.JPanel;
+
+//introduce el métodos para un frame
+import javax.swing.JFrame;
+
+//el diálogo del colores
+import javax.swing.JColorChooser;
+
+//dibujar el rectángulo 
+import java.awt.Graphics;
+
+//mostrar un diálogo
+import javax.swing.JOptionPane;
+
+//crear un botón
+import javax.swing.JButton;
+
+//acomodar el dimensión (de frame etc.)
+import java.awt.Dimension;
+
+//implementa el método addactionlistener
+import java.awt.event.ActionListener;
+
+//implementa el método actionperformed
+import java.awt.event.ActionEvent;
+
+//leer del fichero
+import java.io.*;
+
+//para implementar un String
+import java.lang.String;
+
+//insertar texto del fichero en un textfield
+import javax.swing.JTextField;
+
+//pone los botones en el JPanel
+import java.awt.FlowLayout;
+
+//box layout
+import javax.swing.BoxLayout;
+
+//gridbaglayout
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.lang.Boolean;
+
+import java.applet.*;
+/*
+clase para crear la rama 
+author: abraham barato/christian siedler
+fecha: 14/10/13
+*/
+
+
+public class inter_graphic extends JFrame implements ActionListener 
+{
+  private JButton changeColorButton,leertexto;
+  private JTextField texto_leido;
+  private String fi_camino = "Documentos//jardin_java_test//java_jardin//src//camino_salida.txt";
+  final static boolean shouldFill = true;
+  final static boolean shouldWeightX = true;
+  final static boolean RIGHT_TO_LEFT = false;
+  private Color color = Color.LIGHT_GRAY;
+  private JPanel panel, buttonPanel, bigPanel;
+    private GridBagLayout gbl;
+  private int alto;
+  private int ancho;
+  private int tamano_celda;
+  private int offset_x;
+  private int offset_y;
+  private int[][] escenario;
+  private Color[] colores;
+  
+  public inter_graphic(int _alto, int _ancho, int _tamano_celda){
+	  initGUI(_alto,  _ancho, _tamano_celda);
+	  repaint(1);
+  }
+
+  /*
+  Método para crear un rectángulo y una leyenda
+  author: abraham barato/christian siedler
+  fecha: 14/10/13
+  */
+  
+
+ 
+  
+  
+  private void initGUI(int _alto, int _ancho, int _tamano_celda)  {
+    setTitle(" Jardín prueba 1");
+   
+    
+    this.ancho = _alto;
+    this.alto = _ancho;
+    this.tamano_celda = _tamano_celda;
+    this.offset_y = 100;
+    this.offset_x = 250;
+    this.escenario = new int[_ancho][_alto];
+
+    this.escenario[1][1] = 1;
+    this.escenario[1][2] = 3;
+    this.escenario[1][3] = 3;
+    this.escenario[2][2] = 3;
+    this.escenario[0][0] = 2;
+    this.escenario[2][2] = 3;
+    this.escenario[3][2] = 3;
+
+  //---------------------------------------------------------------------
+    //editor: christian siedler, 15/10/13, V1.0: botón, diálogo y cargar texto del fichero
+     
+    GridBagConstraints c = new GridBagConstraints();
+//    gbl = new GridBagLayout();
+//    panel = new JPanel();
+//    setPreferredSize(new Dimension(1300, 700));
+// 
+//    buttonPanel = new JPanel(gbl);
+//	  buttonPanel.add(changeColorButton,c); 
+//    buttonPanel.setBorder(BorderFactory.createEmptyBorder(250,50,10,10));
+//    setLayout(new BorderLayout());
+//    panel.setLayout(gbl);
+    
+    JPanel bigPanel = new JPanel(new GridBagLayout());
+    JPanel panel_a = new JPanel();
+    JButton changeColorButton = new JButton("Change color");
+    panel_a.add(changeColorButton);
+
+    JPanel panel_b = new JPanel();
+    JButton btnB = new JButton("lee texto!");
+    panel_b.add(btnB);
+    
+    panel_b.setBorder(BorderFactory.createEmptyBorder(250,50,10,10));
+      changeColorButton = new JButton("Change color");
+     
+      texto_leido = new JTextField(20);
+      
+      leertexto.addActionListener(this);
+  	  //changeColorButton.setPreferredSize(new Dimension(150,60));
+  	  changeColorButton.addActionListener(this);
+      //crear und panel para los butóns al derecha
+      //JPanel rightsidepanel = new JPanel(new GridBagLayout());
+      c.gridwidth = GridBagConstraints.REMAINDER;
+      c.fill = GridBagConstraints.HORIZONTAL;
+      c.weightx = 1.0;
+      bigPanel.add(panel_a, c);
+      bigPanel.add(panel_b, c);
+      c.weighty = 1.0;
+  	 bigPanel.add(new JPanel(), c);
+     this.add(bigPanel);
+  	
+  	  //crear el butón y añadir un actionListener,  acomodar el tamaño
+    
+  	  
+//      c.fill = GridBagConstraints.HORIZONTAL;
+//      c.weightx = 0.5;
+//      c.gridx = 2;
+//      c.gridy = 0;
+  	//  buttonPanel.add(changeColorButton,c); 
+  	  //BorderFactory: createEmptyBorder(int top,int left,int bottom,int right)
+  	  //rightsidepanel.setBorder(BorderFactory.createEmptyBorder(250,50,10,10));
+    
+  	  //añadir el botón al panel
+  	  //rightsidepanel.add(changeColorButton, BorderLayout.SOUTH);
+
+  	  	  
+  	  //-----parte--de--la--Lectura--del--fichero-----
+  	  
+//  	c.fill = GridBagConstraints.HORIZONTAL;
+//    c.gridx = 0;
+//    c.gridy = 0;
+//      buttonPanel.add(leertexto,c);
+  	 
+  	  //texto_leido.setAlignmentX(Component.CENTER_ALIGNMENT);
+//      c.fill = GridBagConstraints.HORIZONTAL;
+//      c.weightx = 0.5;
+//      c.gridx = 1;
+//      c.gridy = 0;
+//      buttonPanel.add(texto_leido,c);
+  	  //leertexto.setPreferredSize(new Dimension(150,60));
+  	  
+  	  //rightsidepanel.add(leertexto);
+  	  //rightsidepanel.add(texto_leido);
+     
+      //insert paint
+      //panel.add(new Panel(),c);
+      //this.add(panel);
+      //this.getContentPane().setLayout (new GridBagLayout());
+      //repaint(1);
+  	  //-----end-leer--del--fichero-------------------
+  	  
+    //--end: christian siedler
+    //---------------------------------------------------------------------
+   
+  }//--end inter_graphic (constructor!)
+  
+
+  
+  public String leeFichero (String fichero){
+	  File nombre = null;
+	  String dir = "src/camino_salida.txt";
+	  FileReader filepointer = null;
+	  BufferedReader bufferedpointer = null;
+	  
+	  try{
+		  //initialize la lectura
+		  nombre = new File (dir);
+		  
+		  //fileReader no tiene métodos que permitan leer líneas completas
+		  //pero sí BufferedReader
+		  filepointer = new FileReader (nombre);
+		  bufferedpointer = new BufferedReader(filepointer);
+		  
+		  //leer el fichero
+		  String linea;
+		  while((linea=bufferedpointer.readLine())!=null){
+			System.out.println(linea);
+		  return linea;
+		  }
+		  return "no puedo leer";
+	  }
+	  catch(Exception e){
+		  e.printStackTrace();
+		  return "excepción de catch";
+	  }finally{
+		  // cerrar el fichero si todo va bien
+		  try{
+			  if(null != filepointer) {
+				  filepointer.close();
+			  }//--end close filepointer
+		  }catch (Exception e2){
+			  e2.printStackTrace();
+		  }//--end catch finally
+	  }
+  }
+  
+  /*
+  evento que cambiar el fondo
+  author: christian siedler
+  fecha: 14/10/13
+  */
+  public void actionPerformed(ActionEvent e){
+	
+	  //cambiar el color del fondo
+	  if(e.getSource()==changeColorButton){
+		color = JColorChooser.showDialog(
+				inter_graphic.this, "Choose a color", color );
+
+		if (color == null) 
+				color = Color.LIGHT_GRAY;
+		this.getContentPane().setBackground(color);
+	  }//end--changeColorButton
+	  
+	  //Lectura del fichero
+	  if(e.getSource()==leertexto){
+		  texto_leido.setText(leeFichero(fi_camino));
+	  }//end--leertexto
+	  
+  }//--end actionperformed 
+  
+  /*
+  Método para crear un rectángulo y una leyenda
+  author: abraham barato
+  fecha: 14/10/13
+  */
+  public void leyenda(Graphics g)
+  {
+    int offset_leyenda = 20;
+
+    String[] texto_leyenda = { "Césped bajo", "Césped alto", "Obstáculo", "Cortacesped" };
+    for (int i = 0; i < texto_leyenda.length; i++) {
+      g.setColor(this.colores[i]);
+      g.fillRect(this.offset_x, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i, this.tamano_celda, this.tamano_celda);
+      g.setColor(Color.BLACK);
+      g.setFont(new Font("Serif", 3, 18));
+      g.drawString(texto_leyenda[i], this.offset_x + this.tamano_celda, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i + this.tamano_celda / 2);
+      
+    }
+    
+  }//--end leyenda
+
+  /*
+   Método para crear un rectángulo y una leyenda
+   author: abraham barato
+   fecha: 14/10/13
+   */
+  
+  public void paint(Graphics g)
+  {
+   super.paint(g);
+
+    this.colores = new Color[] { 
+      new Color(88, 250, 88), 
+      new Color(0, 255, 0), 
+      new Color(255, 255, 0), 
+      new Color(0, 0, 0) };
+    for (int i = 0; i < this.alto; i++)
+    {
+      for (int j = 0; j < this.ancho; j++) {
+        int indice_color_celda = this.escenario[i][j];
+        g.setColor(this.colores[indice_color_celda]);
+        g.drawRect(i * this.tamano_celda + this.offset_x, j * this.tamano_celda + this.offset_y, this.tamano_celda, this.tamano_celda);
+        g.fillRect(i * this.tamano_celda + this.offset_x + 1, j * this.tamano_celda + this.offset_y + 1, this.tamano_celda - 1, this.tamano_celda - 1);
+     
+      }
+    }
+    
+    leyenda(g);
+
+
+  }//end--paint
+  
+  public static void main(String[] args) {
+      //Create and set up the window.
+      //inter_graphic frame = new inter_graphic(10,  10, 50);
+      
+      //String dim_str = JOptionPane.showInputDialog("Introduzca el alto");
+  	  String dim_str = "10";
+      int alto = Integer.parseInt(dim_str);
+      //String dim_str2 = JOptionPane.showInputDialog("Introduzca el ancho");
+      String dim_str2 = "10";
+      int ancho = Integer.parseInt(dim_str2);
+      inter_graphic application = new inter_graphic(10, 10, 40);
+      application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      //Display the window.
+      application.pack();
+      application.setVisible(true);
+  }
+  }
+
+  
+

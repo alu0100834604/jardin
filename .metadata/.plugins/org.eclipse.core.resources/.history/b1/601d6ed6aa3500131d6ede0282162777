@@ -1,0 +1,344 @@
+//opciones para acomodar las fonteras
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Label;
+import java.awt.Panel;
+
+//acomodar el color (del fondo o de la escritura
+import java.awt.Color;
+
+//métodos para crear un container
+import java.awt.Container;
+
+//cambiar/acomodar la escritura
+import java.awt.Font;
+
+//acomodar los limites de la frontera
+import javax.swing.BorderFactory;
+
+//para crear un panel
+import javax.swing.JPanel;
+
+//introduce el métodos para un frame
+import javax.swing.JFrame;
+
+//el diálogo del colores
+import javax.swing.JColorChooser;
+
+//dibujar el rectángulo 
+import java.awt.Graphics;
+
+//mostrar un diálogo
+import javax.swing.JOptionPane;
+
+//crear un botón
+import javax.swing.JButton;
+
+//acomodar el dimensión (de frame etc.)
+import java.awt.Dimension;
+
+//implementa el método addactionlistener
+import java.awt.event.ActionListener;
+
+//implementa el método actionperformed
+import java.awt.event.ActionEvent;
+
+//leer del fichero
+import java.io.*;
+
+//para implementar un String
+import java.lang.String;
+
+//insertar texto del fichero en un textfield
+import javax.swing.JTextField;
+
+//pone los botones en el JPanel
+import java.awt.FlowLayout;
+
+//box layout
+import javax.swing.BoxLayout;
+
+
+
+
+import javax.swing.WindowConstants;
+
+
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+/*
+clase para crear la rama 
+author: abraham barato/christian siedler
+fecha: 14/10/13
+*/
+
+
+public class inter_graphic extends JFrame implements ActionListener 
+{
+  private JButton changeColorButton,leertexto,botonIn1,botonIn2,botonIz1,botonIz2,botonIz3;
+  private JTextField texto_leido;
+  private String fi_camino = "Documentos//jardin_java_test//java_jardin//src//camino_salida.txt";
+  private Color color = Color.LIGHT_GRAY;
+  private Container container; 
+  private int alto;
+  private int ancho;
+  private int tamano_celda;
+  private int offset_x;
+  private int offset_y;
+  private int[][] escenario;
+  private Color[] colores;
+  private JPanel panelIzquierdo, panelDerecho, panelInferior;
+  private JScrollPane scroll;
+  private JLabel etiquetaSu;
+  /*
+  Método para crear un rectángulo y una leyenda
+  author: abraham barato/christian siedler
+  fecha: 14/10/13
+  */
+  
+
+ 
+  
+  
+  public inter_graphic(int _alto, int _ancho, int _tamano_celda)  
+  {
+    super(" Jardín prueba 1");
+    //setSize(1300, 700);
+    setVisible(true);
+    
+    this.ancho = _alto;
+    this.alto = _ancho;
+    this.tamano_celda = _tamano_celda;
+    this.offset_y = 100;
+    this.offset_x = 250;
+    this.escenario = new int[_ancho][_alto];
+
+    this.escenario[1][1] = 1;
+    this.escenario[1][2] = 3;
+    this.escenario[1][3] = 3;
+    this.escenario[2][2] = 3;
+    this.escenario[0][0] = 2;
+    this.escenario[2][2] = 3;
+    this.escenario[3][2] = 3;
+    
+    contruyePanelDerecho();
+    contruyeVentana();
+  }//--end inter_graphic (constructor!)
+  //---------------------------------------------------------------------
+    //editor: christian siedler, 15/10/13, V1.0: botón, diálogo y cargar texto del fichero
+     
+
+  public void contruyePanelIzquierdo(){
+      panelIzquierdo = new JPanel();
+      botonIz1=new JButton("Izq1");
+      botonIz2=new JButton("Izq2");
+      botonIz3=new JButton("Izq3");
+      panelIzquierdo.setLayout(new BoxLayout(panelIzquierdo,BoxLayout.Y_AXIS));
+      panelIzquierdo.setBackground(Color.red);
+      panelIzquierdo.add(botonIz1);
+      panelIzquierdo.add(botonIz2);
+      panelIzquierdo.add(botonIz3);
+ 	
+
+  	public void contruyePanelDerecho(){
+    //crear und panel para los butóns al derecha
+    JPanel panelDerecho = new JPanel();
+	
+	  //crear el butón y añadir un actionListener,  acomodar el tamaño
+	changeColorButton = new JButton("Change color");
+	leertexto 		= new JButton("lee texto!");
+	texto_leido 		= new JTextField(20);
+	  //changeColorButton.setPreferredSize(new Dimension(150,60));
+	//changeColorButton.addActionListener(this);
+	//leertexto.addActionListener(this); 
+	  
+	//  leertexto.setPreferredSize(new Dimension(150,60));
+	  
+	  
+	  
+	  
+	  //BorderFactory: createEmptyBorder(int top,int left,int bottom,int right)
+	  //rightsidepanel.setBorder(BorderFactory.createEmptyBorder(250,50,10,10));
+	  panelDerecho.setLayout(new BoxLayout(panelDerecho,BoxLayout.Y_AXIS));
+	  //añadir el botón al panel
+	  panelDerecho.add(changeColorButton);
+	  panelDerecho.add(leertexto);
+	  panelDerecho.add(texto_leido);
+	  //añadir el contenedor al panel
+	  //container.add(rightsidepanel,BorderLayout.EAST);
+  	  
+    
+  	  
+
+
+  	  	  
+  	  
+  	}
+    //--end: christian siedler
+    //---------------------------------------------------------------------
+   
+    public void contruyePanelInferior(){
+        panelInferior = new JPanel();
+        botonIn1=new JButton("Aceptar");
+        botonIn2=new JButton("Cancelar");
+        panelInferior.setLayout(new FlowLayout());
+        panelInferior.setBackground(Color.green);
+        panelInferior.add(botonIn1);
+        panelInferior.add(botonIn2);
+    }
+  	
+  	public void contruyeVentana(){
+        JFrame frame = new JFrame();
+        scroll = new JScrollPane(new JTextArea("JTextArea",10,15));
+        etiquetaSu = new JLabel("Demostracion por INFORUX ");
+        Font aux=etiquetaSu.getFont();
+        etiquetaSu.setFont(new Font(aux.getFontName(), aux.getStyle(), 20));
+        frame.setLayout(new BorderLayout());
+//
+//        //agregamos los paneles al frame principal
+        frame.add(etiquetaSu,BorderLayout.NORTH);
+        frame.add(scroll, BorderLayout.CENTER);
+        frame.add(panelIzquierdo,BorderLayout.WEST);
+          frame.add(panelDerecho,BorderLayout.EAST);
+        frame.add(panelInferior,BorderLayout.SOUTH);
+        //Configuramos el frame
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+  
+
+  
+  public String leeFichero (String fichero){
+	  File nombre = null;
+	  String dir = "src/camino_salida.txt";
+	  FileReader filepointer = null;
+	  BufferedReader bufferedpointer = null;
+	  
+	  try{
+		  //initialize la lectura
+		  nombre = new File (dir);
+		  
+		  //fileReader no tiene métodos que permitan leer líneas completas
+		  //pero sí BufferedReader
+		  filepointer = new FileReader (nombre);
+		  bufferedpointer = new BufferedReader(filepointer);
+		  
+		  //leer el fichero
+		  String linea;
+		  while((linea=bufferedpointer.readLine())!=null){
+			System.out.println(linea);
+		  return linea;
+		  }
+		  return "no puedo leer";
+	  }
+	  catch(Exception e){
+		  e.printStackTrace();
+		  return "excepción de catch";
+	  }finally{
+		  // cerrar el fichero si todo va bien
+		  try{
+			  if(null != filepointer) {
+				  filepointer.close();
+			  }//--end close filepointer
+		  }catch (Exception e2){
+			  e2.printStackTrace();
+		  }//--end catch finally
+	  }
+  }
+  
+  /*
+  evento que cambiar el fondo
+  author: christian siedler
+  fecha: 14/10/13
+  */
+  public void actionPerformed(ActionEvent e){
+	
+	  //cambiar el color del fondo
+	  if(e.getSource()==changeColorButton){
+		color = JColorChooser.showDialog(
+				inter_graphic.this, "Choose a color", color );
+
+		if (color == null) 
+				color = Color.LIGHT_GRAY;
+		getContentPane().setBackground(color);
+	  }//end--changeColorButton
+	  
+	  //Lectura del fichero
+	  if(e.getSource()==leertexto){
+		  texto_leido.setText(leeFichero(fi_camino));
+	  }//end--leertexto
+	  
+  }//--end actionperformed 
+  
+  /*
+  Método para crear un rectángulo y una leyenda
+  author: abraham barato
+  fecha: 14/10/13
+  */
+  public void leyenda(Graphics g)
+  {
+    int offset_leyenda = 20;
+
+    String[] texto_leyenda = { "Césped bajo", "Césped alto", "Obstáculo", "Cortacesped" };
+    for (int i = 0; i < texto_leyenda.length; i++) {
+      g.setColor(this.colores[i]);
+      g.fillRect(this.offset_x, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i, this.tamano_celda, this.tamano_celda);
+      g.setColor(Color.BLACK);
+      g.setFont(new Font("Serif", 3, 18));
+      g.drawString(texto_leyenda[i], this.offset_x + this.tamano_celda, this.ancho * this.tamano_celda + this.offset_y + offset_leyenda + this.tamano_celda * i + this.tamano_celda / 2);
+      
+    }
+    
+  }//--end leyenda
+
+  /*
+   Método para crear un rectángulo y una leyenda
+   author: abraham barato
+   fecha: 14/10/13
+   */
+  
+  public void paint(Graphics g)
+  {
+   super.paint(g);
+
+    this.colores = new Color[] { 
+      new Color(88, 250, 88), 
+      new Color(0, 255, 0), 
+      new Color(255, 255, 0), 
+      new Color(0, 0, 0) };
+    for (int i = 0; i < this.alto; i++)
+    {
+      for (int j = 0; j < this.ancho; j++) {
+        int indice_color_celda = this.escenario[i][j];
+        g.setColor(this.colores[indice_color_celda]);
+        g.drawRect(i * this.tamano_celda + this.offset_x, j * this.tamano_celda + this.offset_y, this.tamano_celda, this.tamano_celda);
+        g.fillRect(i * this.tamano_celda + this.offset_x + 1, j * this.tamano_celda + this.offset_y + 1, this.tamano_celda - 1, this.tamano_celda - 1);
+     
+      }
+    }
+    
+    leyenda(g);
+
+
+  }//end--paint
+  
+  public static void main(String[] args) {
+//	  String dim_str = "10";
+//	  //String dim_str = JOptionPane.showInputDialog("Introduzca el alto");
+//	    int alto = Integer.parseInt(dim_str);
+//	  
+//	    //String dim_str2 = JOptionPane.showInputDialog("Introduzca el ancho");
+//	    String dim_str2 = "10";
+//	    int ancho = Integer.parseInt(dim_str2);
+//	    
+//	    inter_graphic application = new inter_graphic(alto, ancho, 50);
+//	    application.setDefaultCloseOperation(3);
+	  new inter_graphic(10,10,50);
+  }
+  }
+
+  
+

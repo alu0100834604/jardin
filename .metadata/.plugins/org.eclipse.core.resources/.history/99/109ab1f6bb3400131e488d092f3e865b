@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>
+Applet grafDemo (grafDemo.class)
+</title>
+</head>
+<body>
+<APPLET code="grafDemo.class" width=500 height=400>
+</APPLET>
+</body>
+</html>
