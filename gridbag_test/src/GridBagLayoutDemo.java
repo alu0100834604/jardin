@@ -40,22 +40,25 @@ public class GridBagLayoutDemo{
     public void setobstacle(String _obstacle){
     	this.sel_obstacle = _obstacle;
     }
+  //todo: write algorithm for column/row to button-index conversion
     public String getobstaclefield(){
     	return this.sel_field;
     }
+    //todo: write algorithm for column/row to button-index conversion
     public void setobstaclefield(String _sel_field){
     	this.sel_field = _sel_field;
     }
+ 
     
-
-    JButton myButton[]=new JButton[10];
+    //todo: make number of buttons dynamically
+    JButton myButton[]=new JButton[26];
     public void setfields(Container pane){
     
 	
     	GridBagConstraints c = new GridBagConstraints();
-    	
+    	index = 1;
     	try{
-	
+    		//todo: make rows and columns dynamically
         	for(setrow(1);getrow()<=5;setrow(getrow()+1)){
             	for(setcolumn(1);getcolumn()<=5;setcolumn(getcolumn()+1)){
             
@@ -64,7 +67,7 @@ public class GridBagLayoutDemo{
             		
             		
             		myButton[index] = new JButton(new ImageIcon(buttonIcon));
-            		myButton[index].setText(Integer.toString(index+1));
+            		//myButton[index].setText(Integer.toString(index));
             		myButton[index].setActionCommand("r" + getrow() + ",c" + getcolumn());
             		
                 	myButton[index].setBorder(BorderFactory.createEmptyBorder());
@@ -73,9 +76,11 @@ public class GridBagLayoutDemo{
                 	myButton[index].addActionListener(new ActionListener(){
                 		
                 	    public void actionPerformed (ActionEvent e){
-                	    	 //System.out.println( e.getActionCommand());
+                	    	 System.out.println( e.getActionCommand());
+                	    	 //todo: convert rx,cy to button-index 
+                	    	 //which button belongs to which row+column?
                 	    	setobstaclefield(e.getActionCommand());
-                	    	
+                	    	//todo: set selected button with new image
                 	    	ImageIcon image = new ImageIcon("src/hierba_occupada.png");
                         	myButton[2].setIcon(image);
                 	    }
@@ -140,14 +145,14 @@ public class GridBagLayoutDemo{
     	c.weighty =0;
     	c.gridx = 1;
     	c.gridy = 6;
-    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.fill = GridBagConstraints.VERTICAL;
     	pane.add(treeButton,c);
     
     	c.weighty =0;
     	c.weightx =0;
     	c.gridx = 2;
     	c.gridy = 6;
-    	c.fill = GridBagConstraints.HORIZONTAL;
+    	c.fill = GridBagConstraints.VERTICAL;
     	pane.add(catButton,c);
     	
     

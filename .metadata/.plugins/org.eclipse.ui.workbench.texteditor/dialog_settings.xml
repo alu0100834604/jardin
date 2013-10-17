@@ -4,7 +4,7 @@
 		<item value="301" key="DIALOG_WIDTH"/>
 		<item value="163" key="DIALOG_Y_ORIGIN"/>
 		<item value="572" key="DIALOG_X_ORIGIN"/>
-		<item value="410" key="DIALOG_HEIGHT"/>
+		<item value="433" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="actionlistener" key="selection"/>
+		<item value="getobstaclefield" key="selection"/>
 		<list key="findhistory">
+			<item value="getobstaclefield"/>
+			<item value="system"/>
+			<item value="out"/>
+			<item value="myListener"/>
+			<item value="implements"/>
+			<item value="GridBagLayoutDemo"/>
 			<item value="actionlistener"/>
 			<item value="textfield"/>
-			<item value="system"/>
-			<item value="buttonpanel"/>
-			<item value="main"/>
-			<item value="paint"/>
-			<item value="class"/>
-			<item value="TextField"/>
 		</list>
 		<list key="replacehistory">
 		</list>
