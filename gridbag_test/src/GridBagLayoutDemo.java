@@ -13,10 +13,10 @@ public class GridBagLayoutDemo{
     private int row,column,index=1;
     private String sel_obstacle,sel_field;
     private String ficheropath = "src/camino_salida.txt";
-    private String linea;
+    private String linea, dir, mowpos;
     private int localbutton,obstacletype;
     //todo: make dim dynamically
-    private int dim = 5;
+    private int dim = 6;
     
     //set a specific column, the actual chosen
     public void setcolumn(int _column){
@@ -48,15 +48,51 @@ public class GridBagLayoutDemo{
     //conversion of index to button number: r1,c1 -> 1 , r1,c2 -> 2 etc...
     public int matr2button(String _matr){
     	//ejemplo: r2,c4
-    	int _row,_column;
-    	System.out.println(_matr);
+    	int _row,_column,buttonnum=0;
+    	
+    	try{
     	_row = Character.getNumericValue(_matr.charAt(1));
-    	//System.out.println(_row);
+    	
     	_column = Character.getNumericValue(_matr.charAt(4));
     	//if button is in the first row, select the column, otherwise calculate: 5. button - column 
-    	int buttonnum = (dim>1) ? (_row - 1) * dim + _column : _column; 
+    	buttonnum = (dim>1) ? (_row - 1) * dim + _column : _column;
+    	
+    	}
+    	catch(Exception e){
+    		System.out.println("matr2button failed");
+    		
+    	}
     	return buttonnum;
     }
+    
+    public String button2matr(int _button){
+    	String _matr = "r1,c1";
+    	int _row,_column;
+    	
+    	try{
+    	 _matr = String.valueOf(_button);
+    	if(dim>9){
+    		_row = Character.getNumericValue(_matr.charAt(0));
+    		_column = Character.getNumericValue(_matr.charAt(1));
+    		_matr = "r"+ ((_row == 0) ?  "1": _row+1) + ",c" + _column;
+    		System.out.println("dim>9: "+_matr);
+    	}
+    	if(dim<10){
+    		_row = 1;
+    		while(_button > (_row * dim)){
+    			_row+=1;
+    		}
+    		_matr = "r" + (_row ) + ",c" + (_button - ((_row>1) ? ((_row -1)*dim) : 0));
+    		System.out.println("dim<10: "+_matr);
+    	}
+    	}
+    	catch(Exception e){
+    		System.out.println("button2matr failed");
+    	}
+
+    	return _matr;
+    }
+    
     //return the path to the file, the exit is stored into
     public String getficheropath(){
     	return this.ficheropath;
@@ -73,21 +109,100 @@ public class GridBagLayoutDemo{
     
     
     //todo: make number of buttons dynamically
-    JButton myButton[]=new JButton[26];
+    JButton myButton[]=new JButton[dim*dim + 1];
     JTextField myWriteTextField = new JTextField();
 	JTextField myReadTextField = new JTextField();
 	
 	/*
 	 * método para set mower (cortacesped)
 	 */
-	public void setmower(){
+	
+	//public static final ImageIcon image_working_mower = setinitialmower();
 		
+
+	public void setinitialmower(){
+		
+		try{
+			ImageIcon image_working_mower = new ImageIcon("src/mower_working.png");
+			
+         	myButton[1].setIcon(image_working_mower);
+         	myButton[1].setActionCommand("r"+1+",c"+1+"r");
+         	mowpos = "r1,c1";
+		}
+         	catch(Exception e){
+				System.out.println("no mower-image found");
+	
+         	}
 	}
 	
 	/*
 	 * método para buscar la salida
 	 */
 	public void findexit(){
+		
+		
+	}
+	/*
+	 * getmower
+	 */
+	public String getmowerpos(){
+		
+		return this.mowpos;
+	}
+	
+	
+	/*
+	 * el siguente posicion del cortacesped
+	 */
+	public void setmowerpos(String _mowpos){
+		ImageIcon image_hierba_cortado = new ImageIcon("src/hierba_cortado.png");
+		ImageIcon image_working_mower = new ImageIcon("src/mower_working.png");
+		//System.out.println(_mowpos);
+		//System.out.println(matr2button(_mowpos));
+		myButton[matr2button(_mowpos)].setActionCommand(_mowpos + "r");
+		//System.out.println(myButton[matr2button(_mowpos)].getActionCommand());
+     	myButton[matr2button(_mowpos)].setIcon(image_working_mower);
+     	myButton[matr2button(getmowerpos())].setIcon(image_hierba_cortado);
+     	this.mowpos = _mowpos;
+
+	}
+	
+	/*
+	 * método para mover
+	 */
+	
+	public int setmower(char _dir){
+		
+		
+		switch (_dir){
+		case 'E':
+		case 'e':
+			setmowerpos("r3,c4");
+			System.out.println("dir: e");
+			break;
+		case 'O':
+		case 'o':
+			System.out.println("dir: o");
+			break;
+		case 'N':
+		case 'n':
+			System.out.println("dir: n");
+			break;
+		case 'S':
+		case 's':
+			System.out.println("dir: s");
+			break;
+		default:
+			break;
+		
+		}
+		return 1;
+	}
+	
+	/*
+	 * método para cortar
+	 */
+	public void cortar(){
 		
 	}
 	
@@ -112,9 +227,11 @@ public class GridBagLayoutDemo{
          	    	ImageIcon image_cat = new ImageIcon("src/hierba_cat.png");
          	    	ImageIcon image_tree = new ImageIcon("src/hierba_tree.png");
          	    	localbutton = matr2button(getobstaclefield());
+         	    	System.out.println(button2matr(localbutton) + "from obstacles");
          	    	if(obstacletype == 1) {
          	    	
                  	myButton[localbutton].setIcon(image_tree);
+                 
          	    	}
          	    	else{ 
          	    	myButton[localbutton].setIcon(image_cat);
@@ -158,14 +275,14 @@ public class GridBagLayoutDemo{
     	c.weightx =0;
     	c.weighty =0;
     	c.gridx = 1;
-    	c.gridy = 6;
+    	c.gridy = dim+1;
     	c.fill = GridBagConstraints.VERTICAL;
     	pane.add(treeButton,c);
     
     	c.weighty =0;
     	c.weightx =0;
     	c.gridx = 1;
-    	c.gridy = 7;
+    	c.gridy = dim+2;
     	c.fill = GridBagConstraints.VERTICAL;
     	pane.add(catButton,c);
 
@@ -173,11 +290,11 @@ public class GridBagLayoutDemo{
     	//create buttons and fill with images
     	//counts the buttons
     	index = 1;
-    	
+    	ButtonGroup mybuttongroup = new ButtonGroup();
     	try{
     		//todo: make rows and columns dynamically
-        	for(setrow(1);getrow()<=5;setrow(getrow()+1)){
-            	for(setcolumn(1);getcolumn()<=5;setcolumn(getcolumn()+1)){
+        	for(setrow(1);getrow()<=dim;setrow(getrow()+1)){
+            	for(setcolumn(1);getcolumn()<=dim;setcolumn(getcolumn()+1)){
             
             		BufferedImage buttonIcon = ImageIO.read(new File("src/hierba_small.png"));
             		
@@ -195,7 +312,7 @@ public class GridBagLayoutDemo{
                 	c.gridy = getrow();
             	
                 	pane.add(myButton[index], c);
-            	
+                	mybuttongroup.add(myButton[index]);
                 	index++;
             	} // for inner for (end row)
             }//end for, create buttons (end column)
@@ -204,7 +321,7 @@ public class GridBagLayoutDemo{
     	}//end try   
     	catch (IOException e){
     		//in case no file exists
-    		System.out.println("false_setfields");
+    		System.out.println("no garden image found");
     	}//end catch
     }//end setfields
    
@@ -242,7 +359,7 @@ public class GridBagLayoutDemo{
         c.weightx = 0.0;
         c.gridwidth = 2;
         c.gridx = 1;
-        c.gridy = 8;
+        c.gridy = dim+3;
         myReadTextField.setText("Read");
         pane.add(myReadTextField,c);
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -250,7 +367,7 @@ public class GridBagLayoutDemo{
         c.weightx = 0.0;
         c.gridwidth = 2;
         c.gridx = 1;
-        c.gridy = 9;
+        c.gridy = dim+4;
         myWriteTextField.setText("Write");
         pane.add(myWriteTextField,c);
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -260,7 +377,7 @@ public class GridBagLayoutDemo{
         c.insets = new Insets(10,0,0,0);
         c.gridwidth = 2;
         c.gridx = 1;
-        c.gridy = 10;
+        c.gridy = dim+5;
         pane.add(myReadButton,c);
         myReadButton.addActionListener(myListener);
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -270,7 +387,7 @@ public class GridBagLayoutDemo{
         c.insets = new Insets(10,0,0,0);
         c.gridwidth = 2;
         c.gridx = 3;
-        c.gridy = 10;
+        c.gridy = dim+5;
         pane.add(myWriteButton,c);
         myWriteButton.addActionListener(myListener);
         
@@ -295,8 +412,10 @@ public class GridBagLayoutDemo{
     GridBagLayoutDemo panel = new GridBagLayoutDemo();
     panel.setfields(pane);
     panel.settextfield(pane);
-    	
+    panel.setinitialmower();
+    panel.setmower('E');
     }
+    
     public String getficherotext(){
   	  File nombre = null;
   	  String dir = "src/camino_salida.txt";
@@ -315,7 +434,7 @@ public class GridBagLayoutDemo{
   		  //leer el fichero
   		  
   		  while((linea=bufferedpointer.readLine())!=null){
-  			System.out.println(linea);
+  			//System.out.println(linea);
   		  return linea;
   		  }
   		  return "no puedo leer";
