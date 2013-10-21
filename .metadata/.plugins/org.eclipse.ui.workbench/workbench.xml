@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="17" version="2.0">
+<workbench progressCount="14" version="2.0">
 <workbenchAdvisor/>
-<window height="842" width="718" x="0" y="0">
+<window height="819" width="720" x="27" y="15">
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="org.eclipse.pde.runtime.LogView"/>
 </fastViewData>
@@ -20,7 +20,7 @@
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="182" y="25"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -32,28 +32,13 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DemoBorderLayout.java" partName="DemoBorderLayout.java" path="/home/etsii/alu0100834604/Documentos/jardin_java_test/DemoBorderLayout/src/DemoBorderLayout.java" title="DemoBorderLayout.java" tooltip="DemoBorderLayout/src/DemoBorderLayout.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DemoBorderLayout/src/DemoBorderLayout.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="531"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="inter_graphic.java" partName="inter_graphic.java" path="/home/etsii/alu0100834604/Documentos/jardin_java_test/java_jardin/src/inter_graphic.java" title="inter_graphic.java" tooltip="java_jardin/src/inter_graphic.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/java_jardin/src/inter_graphic.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2749" selectionTopPixel="1536"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GridBagLayoutDemo.java" partName="GridBagLayoutDemo.java" path="/home/etsii/alu0100834604/Documentos/jardin_java_test/gridbag_test/src/GridBagLayoutDemo.java" title="GridBagLayoutDemo.java" tooltip="gridbag_test/src/GridBagLayoutDemo.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/gridbag_test/src/GridBagLayoutDemo.java"/>
-<editorState selectionHorizontalPixel="21" selectionLength="0" selectionOffset="1184" selectionTopPixel="391"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RadioButtonDemo.java" partName="RadioButtonDemo.java" title="RadioButtonDemo.java" tooltip="/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="92" selectionOffset="1020" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GridBagLayoutDemo.java" partName="GridBagLayoutDemo.java" path="/home/etsii/alu0100834604/Documentos/jardin_java_test/gridbag_test_old/src/GridBagLayoutDemo.java" title="GridBagLayoutDemo.java" tooltip="gridbag_test_old/src/GridBagLayoutDemo.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/gridbag_test_old/src/GridBagLayoutDemo.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="134" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -63,7 +48,8 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (39 items)"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="417"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -75,7 +61,9 @@
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
-<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
+<customFilters userDefinedPatternsEnabled="false">
+<xmlDefinedFilters>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
@@ -249,12 +237,8 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <fastViewBars>
-<fastViewBar fastViewLocation="16384" id="left" orientation="512" selectedTabId="org.eclipse.jdt.ui.PackageExplorer" style="0">
-<fastViews>
-<view id="org.eclipse.jdt.ui.PackageExplorer" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
 <fastViewBar fastViewLocation="131072" id="right" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
 <fastViews>
 <view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
@@ -264,13 +248,15 @@
 <layout>
 <mainWindow>
 <info folder="true" part="left">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info folder="true" part="stickyFolderRight" ratio="0.7492114" ratioLeft="475" ratioRight="159" relationship="2" relative="left">
@@ -297,7 +283,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@736092" ratio="0.7492918" ratioLeft="529" ratioRight="177" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@736092" ratio="0.67893964" ratioLeft="461" ratioRight="218" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -319,35 +305,13 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/gridbag_test/src/GridBagLayoutDemo.java"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" uri="file:/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java"/>
-<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" uri="file:/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/gridbag_test_old/src/GridBagLayoutDemo.java"/>
 </editors>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
 <position/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="RadioButtonDemo.java" index="1">
-<position info="not_deleted" x="1933" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="RadioButtonDemo.java" index="1">
-<position info="not_deleted" x="1978" y="13"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="RadioButtonDemo.java" index="1">
-<position info="not_deleted" x="873" y="78"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="RadioButtonDemo.java" index="1">
-<position info="not_deleted" x="1020" y="92"/>
+<position info="not_deleted" x="1838" y="0"/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
 <position/>
@@ -380,61 +344,13 @@
 <position/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="3196" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="3315" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="814" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
 <position/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
+<position info="not_deleted" x="2167" y="0"/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="1278" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="3146" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="4793" y="0"/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position/>
-</item>
-<item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="5091" y="0"/>
+<position info="not_deleted" x="2898" y="0"/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
 <position/>
@@ -458,19 +374,88 @@
 <position/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="1327" y="0"/>
+<position/>
 </item>
 <item historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
+<position/>
 </item>
-<item historyLabel="RadioButtonDemo.java" index="2">
-<position info="not_deleted" x="3" y="0"/>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
 </item>
-<item historyLabel="RadioButtonDemo.java" index="2">
-<position info="not_deleted" x="1020" y="92"/>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
 </item>
-<item active="true" historyLabel="GridBagLayoutDemo.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="3927" y="0"/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="3917" y="0"/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="4233" y="0"/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="4190" y="0"/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="2444" y="0"/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="1">
+<position/>
+</item>
+<item historyLabel="GridBagLayoutDemo.java" index="0">
+<position info="not_deleted" x="0" y="13650"/>
+</item>
+<item active="true" historyLabel="GridBagLayoutDemo.java" index="1">
+<position info="not_deleted" x="134" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -495,11 +480,14 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="System.class" tooltip="java.lang.System">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=gridbag_test/\/usr\/lib\/jvm\/java-6-openjdk-i386\/jre\/lib\/rt.jar&lt;java.lang(System.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="ActionEvent.class" tooltip="java.awt.event.ActionEvent">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=gridbag_test/\/usr\/lib\/jvm\/java-6-openjdk-i386\/jre\/lib\/rt.jar&lt;java.awt.event(ActionEvent.class"/>
+</file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RadioButtonDemo.java" tooltip="/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java">
 <persistable uri="file:/home/etsii/alu0100834604/Descargas/RadioButtonDemo.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GridBagLayoutDemo.java" tooltip="gridbag_test/src/GridBagLayoutDemo.java">
-<persistable path="/gridbag_test/src/GridBagLayoutDemo.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="inter_graphic.java" tooltip="java_jardin/src/inter_graphic.java">
 <persistable path="/java_jardin/src/inter_graphic.java"/>
