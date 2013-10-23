@@ -5,13 +5,15 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 import javax.swing.Timer;
-
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 public class GridBagLayoutDemo {
 
 	final static boolean shouldFill = true;
 	final static boolean shouldWeightX = true;
 	final static boolean RIGHT_TO_LEFT = false;
+	  static final String newline = "\n";
 	private int row, column, index = 1;
 	private String sel_obstacle, sel_field;
 	private String ficheropath = "src/camino_salida.txt";
@@ -38,6 +40,13 @@ public class GridBagLayoutDemo {
 	// get a specific row, the actual chosen
 	public int getrow() {
 		return this.row;
+	}
+	public int getrowfrommatr(){
+		return Character.getNumericValue(getmowerpos().charAt(1));
+	}
+	
+	public int getcolumnfrommatr(){
+		return Character.getNumericValue(getmowerpos().charAt(4));
 	}
 
 	// get a field, filled with an obstacle
@@ -132,6 +141,8 @@ public class GridBagLayoutDemo {
 			myButton[1].setIcon(image_working_mower);
 			myButton[1].setActionCommand("r" + 1 + ",c" + 1 + "r");
 			mowpos = "r1,c1";
+			setcolumn(1);
+			setrow(1);
 		} catch (Exception e) {
 			System.out.println("no mower-image found");
 
@@ -171,7 +182,9 @@ public class GridBagLayoutDemo {
 			// System.out.println(myButton[matr2button(_mowpos)].getActionCommand());
 			myButton[matr2button(_newmowpos)].setIcon(image_working_mower);
 			myButton[matr2button(getmowerpos())].setIcon(image_hierba_cortado);	
-			mowpos = _newmowpos;	
+			mowpos = _newmowpos;
+			setrow(getrowfrommatr());
+			setcolumn(getcolumnfrommatr());			
 			}
 		};
 		
@@ -185,13 +198,93 @@ public class GridBagLayoutDemo {
 	/*
 	 * método para mover
 	 */
+	JTextArea feedbackText = new JTextArea();
+	public int setmower(char _dir, Container pane) {
+		GridBagConstraints c = new GridBagConstraints();
+		JTextArea inputText = new JTextArea();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.ipady = 0;
+		c.weightx = 1.0;
+		c.anchor = GridBagConstraints.PAGE_END;
+		c.insets = new Insets(10, 0, 0, 0);
+		c.gridwidth = 2;
+		c.gridx = 4;
+		c.gridy = dim + 3;
+		pane.add(inputText, c);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.ipady = 0;
+		c.weightx = 1.0;
+		c.anchor = GridBagConstraints.PAGE_END;
+		c.insets = new Insets(10, 0, 0, 0);
+		c.gridwidth = 2;
+		c.gridx = 4;
+		c.gridy = dim + 4;
+		pane.add(feedbackText, c);
+		inputText.addKeyListener(new KeyListener()
+        {
+			
+			
+              //When any key is pressed and released then the 
+              //keyPressed and keyReleased methods are called respectively.
+              //The keyTyped method is called when a valid character is typed.
+              //The getKeyChar returns the character for the key used. If the key
+              //is a modifier key (e.g., SHIFT, CTRL) or action key (e.g., DELETE, ENTER)
+              //then the character will be a undefined symbol.
+              @Override 
+              public void keyPressed(KeyEvent e)
+              {
+            	  int key = e.getKeyCode();
+            	  if (key == KeyEvent.VK_LEFT) {
+                	  feedbackText.setText("left");
+                	  setrow(getrow());
+                	  setcolumn(getcolumn() -1 );
+                	  setmowerpos("r"+ (getrowfrommatr()) + ",c" + (getcolumnfrommatr() - 1));
+                  }
 
-	public int setmower(char _dir) {
+                  if (key == KeyEvent.VK_RIGHT) {
+                	  setrow(getrow());
+                	  setcolumn(getcolumn() +1 );
+                	  feedbackText.setText("right");
+                	  setmowerpos("r"+ (getrowfrommatr()) + ",c" + (getcolumnfrommatr() + 1));
+                  }
 
+                  if (key == KeyEvent.VK_UP) {
+                	  setrow(getrow() - 1 );
+                	  setcolumn(getcolumn());
+                	  feedbackText.setText("up");
+                	  setmowerpos("r"+ (getrowfrommatr() - 1) + ",c" + getcolumnfrommatr());
+                  }
+
+                  if (key == KeyEvent.VK_DOWN) {
+                	  setrow(getrow() + 1);
+                	  setcolumn(getcolumn());
+                	  feedbackText.setText("down");
+                	  setmowerpos("r"+ (getrowfrommatr() + 1) + ",c" + getcolumnfrommatr());
+                  }
+
+                  feedbackText.append("Key Pressed: " + e.getKeyChar() + "\n");
+              }
+              @Override
+              public void keyReleased(KeyEvent e)
+              {
+                  feedbackText.append("Key Released: " + e.getKeyChar() + "\n");
+              }
+              
+              @Override
+              public void keyTyped(KeyEvent e)
+              {
+                  //The getKeyModifiers method is a handy
+                  //way to get a String representing the
+                  //modifier key.
+                  feedbackText.append("Key Typed: " + e.getKeyChar() + " " + KeyEvent.getKeyModifiersText(e.getModifiers()) + "\n");
+              }
+              
+
+                      });
 		switch (_dir) {
 		case 'E':
 		case 'e':
-			setmowerpos("r3,c4");
+			
 			System.out.println("dir: e");
 			break;
 		case 'O':
@@ -426,7 +519,7 @@ public class GridBagLayoutDemo {
 		panel.setfields(pane);
 		panel.settextfield(pane);
 		panel.setinitialmower();
-		panel.setmower('E');			
+		panel.setmower('E', pane);			
 	}
 
 	public String getficherotext() {
